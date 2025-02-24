@@ -20,26 +20,28 @@ def query_model(model, prompt):
     else:
         return f"Error: {response.status_code}, {response.text}"
 
-st.set_page_config(page_title="Joel", page_icon="", layout="wide")
+st.set_page_config(page_title="...🥃💃🦊", page_icon="", layout="wide")
 
 # sidebar 
 with st.sidebar:
     logo = Image.open("logo.webp")  # Ensure logo.webp is in the same directory as the app or provide correct path
-    st.image(logo, width=200)
-    st.markdown("## AI Model Comparator")
+    st.image(logo, width=logo.width, )
+    # st.markdown("## AI Model Comparator")
+    st.markdown("### \n\nSelect Model Services:")
+    models = {"LLaMA2": "llama2", "DeepSeek": "deepseek-r1", "Mistral": "mistral"}
+    selected_models = st.multiselect("Models:", options=list(models.keys()), default=list(models.keys()))
 
 # Main content
-st.title("Joel")
-st.text("(🥃💃🦊)")
+st.title("Hi, I'm Joel")
 
 # User input
 prompt = st.text_area("Ask me a question!")
 
 # Model selection in sidebar
-with st.sidebar:
-    st.markdown("### Select Models to Query:")
-    models = {"LLaMA2": "llama2", "DeepSeek": "deepseek-r1", "Mistral": "mistral"}
-    selected_models = st.multiselect("Models:", options=list(models.keys()), default=list(models.keys()))
+# with st.sidebar:
+#     st.markdown("### \n\nSelect Model Services:")
+#     models = {"LLaMA2": "llama2", "DeepSeek": "deepseek-r1", "Mistral": "mistral"}
+#     selected_models = st.multiselect("Models:", options=list(models.keys()), default=list(models.keys()))
 
 # Generate response
 if st.button("Generate Response") and prompt:
