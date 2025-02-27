@@ -28,7 +28,8 @@ with st.sidebar:
     st.image(logo, width=logo.width, )
     # st.markdown("## AI Model Comparator")
     st.markdown("### \n\nSelect Model Services:")
-    models = {"LLaMA2": "llama2", "DeepSeek": "deepseek-r1", "Mistral": "mistral"}
+    models = {"LLaMA2": "llama2", "LLaMA3.2": "llama3.2", "DeepSeek": "deepseek-r1", "Mistral": "mistral"}
+    models_nationality = {"LLaMA2": "🇺🇸", "LLaMA3.2": "🇺🇸", "DeepSeek": "🇨🇳", "Mistral": "🇫🇷"}
     selected_models = st.multiselect("Models:", options=list(models.keys()), default=list(models.keys()))
 
 # Main content
@@ -58,5 +59,5 @@ if st.button("Generate Response") and prompt:
     
     for idx, model_name in enumerate(selected_models):
         with cols[idx]:
-            st.subheader(f"{model_name} Response")
+            st.subheader(f"{model_name} {models_nationality[model_name]}")
             st.write(results.get(model_name, "No response generated."))
